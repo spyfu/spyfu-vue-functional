@@ -22,7 +22,7 @@ $ yarn add spyfu-vue-functional
 <a name="basic-usage"></a>
 ### Basic usage
 
-Functional Vue components are simple render functions. This is useful, but it means we are responsible for attaching anything from the placeholder element. This utility exists to make doing this easier. To attach everything from the placeholder element, use the `bindAll` method.
+Functional Vue components are simple render functions. This is useful, but it means the developer is responsible for attaching anything from the placeholder element. This utility exists to make doing this easier. To attach everything from the placeholder element, use the `bindAll` method.
 
 ```js
 import functional from 'spyfu-vue-functional';
