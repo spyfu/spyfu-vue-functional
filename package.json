@@ -1,7 +1,7 @@
 {
   "name": "spyfu-vue-functional",
   "version": "0.1.0",
-  "description": "Sample project for packages built with rollup.",
+  "description": "Helper functions for functional Vue components",
   "main": "dist/spyfu-vue-functional.js",
   "module": "dist/spyfu-vue-functional.esm.js",
   "jsnext:main": "dist/spyfu-vue-functional.esm.js",
@@ -12,24 +12,20 @@
     "test": "cross-env NODE_ENV=test mocha",
     "prepublish": "npm test"
   },
-  "repository": "rollup/spyfu-vue-functional",
+  "repository": "spyfu/spyfu-vue-functional",
   "keywords": [
-    "es6",
-    "modules",
-    "rollup",
-    "bundle",
-    "browser"
+    "vue"
   ],
-  "author": "Brian Donovan",
+  "author": "SpyFu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rollup/rollup-starter-project/issues"
+    "url": "https://github.com/spyfu/spyfu-vue-functional/issues"
   },
   "files": [
     "lib",
     "dist"
   ],
-  "homepage": "https://github.com/rollup/rollup-starter-project#readme",
+  "homepage": "https://github.com/spyfu/spyfu-vue-functional#readme",
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.1.1",
