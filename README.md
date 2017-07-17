@@ -25,7 +25,7 @@ $ yarn add spyfu-vue-functional
 Functional Vue components are nothing more than render functions. Because of this, it can be tedious to attach pieces from your placeholder element like styles and classes. The simplest solution to this problem, is to use the `bindAll` method. This will attach all classes, styles, directives, and events to your component's dom element.
 
 ```js
-import functional form 'spyfu-vue-functional';
+import functional from 'spyfu-vue-functional';
 
 export default {
     functional: true,
