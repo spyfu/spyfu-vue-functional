@@ -25,12 +25,12 @@ $ yarn add spyfu-vue-functional
 Functional Vue components are simple render functions. This is useful, but it means the developer is responsible for attaching anything from the placeholder element. This utility exists to make doing this easier. To attach everything from the placeholder element, use the `bindAll` method.
 
 ```js
-import functional from 'spyfu-vue-functional';
+import { bindAll } from 'spyfu-vue-functional';
 
 export default {
     functional: true,
     render(h, context) {
-        return <div { ...functional.bindAll(context) }>
+        return <div { ...bindAll(context) }>
             Hello!
         </div>;
     },
