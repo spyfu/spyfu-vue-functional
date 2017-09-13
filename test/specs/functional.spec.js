@@ -117,8 +117,15 @@ describe('functional bindings', () => {
 
     it('bindDirectives', (done) => {
         vm = render({
+            directives: {
+                'bling': {
+                    bind(el) {
+                        el.classList.add('bingBangBoom');
+                    }
+                }
+            },
             data: () => ({ show: true }),
-            template: `<v-directives v-show="show" />`,
+            template: `<v-directives v-show="show" v-bling=""/>`,
         });
 
         expect(vm.$el.style.display).to.equal('');
@@ -126,6 +133,7 @@ describe('functional bindings', () => {
         vm.show = false;
         vm.$nextTick(() => {
             expect(vm.$el.style.display).to.equal('none');
+            expect(vm.$el.classList.contains('bingBangBoom')).to.be.true;
             done();
         });
     });
