@@ -1,32 +1,128 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/Users/kyle/.nvm/versions/node/v7.7.1/bin/node',
 1 verbose cli   '/Users/kyle/.nvm/versions/node/v7.7.1/bin/npm',
-1 verbose cli   'version',
-1 verbose cli   'patch' ]
+1 verbose cli   'publish' ]
 2 info using npm@4.1.2
 3 info using node@v7.7.1
-4 info git [ 'status', '--porcelain' ]
-5 verbose stack Error: Git working directory not clean.
-5 verbose stack M lib/index.js
-5 verbose stack M test/specs/functional.spec.js
-5 verbose stack     at /Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/lib/version.js:247:19
-5 verbose stack     at /Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/lib/utils/no-progress-while-running.js:21:8
-5 verbose stack     at ChildProcess.exithandler (child_process.js:201:7)
-5 verbose stack     at emitTwo (events.js:106:13)
-5 verbose stack     at ChildProcess.emit (events.js:194:7)
-5 verbose stack     at maybeClose (internal/child_process.js:899:16)
-5 verbose stack     at Socket.<anonymous> (internal/child_process.js:342:11)
-5 verbose stack     at emitOne (events.js:96:13)
-5 verbose stack     at Socket.emit (events.js:191:7)
-5 verbose stack     at Pipe._handle.close [as _onclose] (net.js:504:12)
-6 verbose cwd /Users/kyle/Git/spyfu-vue-functional
-7 error Darwin 16.7.0
-8 error argv "/Users/kyle/.nvm/versions/node/v7.7.1/bin/node" "/Users/kyle/.nvm/versions/node/v7.7.1/bin/npm" "version" "patch"
-9 error node v7.7.1
-10 error npm  v4.1.2
-11 error Git working directory not clean.
-11 error M lib/index.js
-11 error M test/specs/functional.spec.js
-12 error If you need help, you may report this error at:
-12 error     <https://github.com/npm/npm/issues>
-13 verbose exit [ 1, true ]
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/kyle/Git/spyfu-vue-functional',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/kyle/.npm/spyfu-vue-functional/0.1.2/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/kyle/.npm correctMkdir not in flight; initializing
+10 warn prepublish-on-install As of npm@5, `prepublish` scripts will run only for `npm publish`.
+11 warn prepublish-on-install (In npm@4 and previous versions, it also runs for `npm install`.)
+12 warn prepublish-on-install See the deprecation note in `npm help scripts` for more information.
+13 info lifecycle spyfu-vue-functional@0.1.2~prepublish: spyfu-vue-functional@0.1.2
+14 verbose lifecycle spyfu-vue-functional@0.1.2~prepublish: unsafe-perm in lifecycle true
+15 verbose lifecycle spyfu-vue-functional@0.1.2~prepublish: PATH: /Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/bin/node-gyp-bin:/Users/kyle/Git/spyfu-vue-functional/node_modules/.bin:/Users/kyle/Library/android/sdk/platform-tools:/Users/kyle/Library/android/sdk/tools:/Users/kyle/Library/android/sdk/platform-tools:/Users/kyle/Library/android/sdk/tools:/Users/kyle/.nvm/versions/node/v7.7.1/bin:./node_modules/.bin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/kyle/Library/Android/sdk/tools:/Users/kyle/Library/Android/sdk/platform-tools:/usr/local/mongodb/bin
+16 verbose lifecycle spyfu-vue-functional@0.1.2~prepublish: CWD: /Users/kyle/Git/spyfu-vue-functional
+17 silly lifecycle spyfu-vue-functional@0.1.2~prepublish: Args: [ '-c', 'npm test' ]
+18 silly lifecycle spyfu-vue-functional@0.1.2~prepublish: Returned: code: 0  signal: null
+19 info lifecycle spyfu-vue-functional@0.1.2~prepare: spyfu-vue-functional@0.1.2
+20 silly lifecycle spyfu-vue-functional@0.1.2~prepare: no script for prepare, continuing
+21 verbose tar pack [ '/Users/kyle/.npm/spyfu-vue-functional/0.1.2/package.tgz',
+21 verbose tar pack   '/Users/kyle/Git/spyfu-vue-functional' ]
+22 verbose tarball /Users/kyle/.npm/spyfu-vue-functional/0.1.2/package.tgz
+23 verbose folder /Users/kyle/Git/spyfu-vue-functional
+24 verbose addLocalTarball adding from inside cache /Users/kyle/.npm/spyfu-vue-functional/0.1.2/package.tgz
+25 verbose correctMkdir /Users/kyle/.npm correctMkdir not in flight; initializing
+26 silly cache afterAdd spyfu-vue-functional@0.1.2
+27 verbose afterAdd /Users/kyle/.npm/spyfu-vue-functional/0.1.2/package/package.json not in flight; writing
+28 verbose correctMkdir /Users/kyle/.npm correctMkdir not in flight; initializing
+29 verbose afterAdd /Users/kyle/.npm/spyfu-vue-functional/0.1.2/package/package.json written
+30 silly publish { name: 'spyfu-vue-functional',
+30 silly publish   version: '0.1.2',
+30 silly publish   description: 'Helper functions for functional Vue components',
+30 silly publish   main: 'dist/spyfu-vue-functional.js',
+30 silly publish   module: 'dist/spyfu-vue-functional.esm.js',
+30 silly publish   'jsnext:main': 'dist/spyfu-vue-functional.esm.js',
+30 silly publish   scripts:
+30 silly publish    { prebuild: 'eslint lib test',
+30 silly publish      build: 'cross-env NODE_ENV=production rollup -c',
+30 silly publish      watch: 'rollup -c -w',
+30 silly publish      test: 'cross-env NODE_ENV=test mocha',
+30 silly publish      prepublish: 'npm test' },
+30 silly publish   repository:
+30 silly publish    { type: 'git',
+30 silly publish      url: 'git+https://github.com/spyfu/spyfu-vue-functional.git' },
+30 silly publish   keywords: [ 'vue' ],
+30 silly publish   author: { name: 'SpyFu' },
+30 silly publish   license: 'MIT',
+30 silly publish   bugs: { url: 'https://github.com/spyfu/spyfu-vue-functional/issues' },
+30 silly publish   files: [ 'lib', 'dist' ],
+30 silly publish   homepage: 'https://github.com/spyfu/spyfu-vue-functional#readme',
+30 silly publish   dependencies: {},
+30 silly publish   devDependencies:
+30 silly publish    { 'babel-eslint': '^7.1.1',
+30 silly publish      'babel-helper-vue-jsx-merge-props': '^2.0.2',
+30 silly publish      'babel-plugin-external-helpers': '^6.18.0',
+30 silly publish      'babel-plugin-istanbul': '^4.1.4',
+30 silly publish      'babel-plugin-syntax-jsx': '^6.18.0',
+30 silly publish      'babel-plugin-transform-vue-jsx': '^3.4.3',
+30 silly publish      'babel-preset-es2015': '^6.24.1',
+30 silly publish      'babel-register': '^6.18.0',
+30 silly publish      'babelrc-rollup': '^3.0.0',
+30 silly publish      'browser-env': '^2.0.31',
+30 silly publish      chai: '^4.0.2',
+30 silly publish      'cross-env': '^5.0.1',
+30 silly publish      eslint: '^4.1.1',
+30 silly publish      istanbul: '^0.4.5',
+30 silly publish      mocha: '^3.2.0',
+30 silly publish      rollup: '^0.43.0',
+30 silly publish      'rollup-plugin-babel': '^2.7.1',
+30 silly publish      'rollup-plugin-istanbul': '^1.1.0',
+30 silly publish      'rollup-watch': '^4.0.0',
+30 silly publish      sinon: '^2.3.5',
+30 silly publish      'spyfu-vue-factory': '^0.1.1',
+30 silly publish      vue: '^2.4.1' },
+30 silly publish   readme: '# spyfu-vue-functional\n\n[![Build status](https://img.shields.io/circleci/project/github/spyfu/spyfu-vue-functional.svg)](https://circleci.com/gh/spyfu/spyfu-vue-functional)\n[![Coverage](https://img.shields.io/codecov/c/token/ZnYz3FuhI5/github/spyfu/spyfu-vue-functional.svg)](https://codecov.io/gh/spyfu/spyfu-vue-functional)\n[![Dev dependencies](https://img.shields.io/david/dev/spyfu/spyfu-vue-functional.svg)](#)\n[![npm](https://img.shields.io/npm/v/spyfu-vue-functional.svg)](https://www.npmjs.com/package/spyfu-vue-functional)\n[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/spyfu/spyfu-vue-functional/blob/master/LICENSE)\n\n<a name="installation"></a>\n### Installation\n\nThis utility helps bind placeholder elements to functional Vue components.\n\n```bash\n# install through npm\n$ npm install spyfu-vue-functional\n\n# or with yarn\n$ yarn add spyfu-vue-functional\n```\n\n<a name="basic-usage"></a>\n### Basic usage\n\nFunctional Vue components are simple render functions. This is useful, but it means the developer is responsible for attaching anything from the placeholder element. This utility exists to make doing this easier. To attach everything from the placeholder element, use the `bindAll` method.\n\n```js\nimport { bindAll } from \'spyfu-vue-functional\';\n\nexport default {\n    functional: true,\n    render(h, context) {\n        return <div { ...bindAll(context) }>\n            Hello!\n        </div>;\n    },\n};\n```\n\n> **Note:** The above example uses JSX. To enable this syntax, [see documentation here](https://github.com/vuejs/babel-plugin-transform-vue-jsx).\n\nIf you\'re only interested in binding part of the placeholder element, the following methods are also available.\n\n- `bindAttributes`\n- `bindDirectives`\n- `bindEventListeners`\n- `bindClasses`\n- `bindDynamicClasses`\n- `bindStaticClasses`\n- `bindStyles`\n- `bindDynamicStyles`\n- `bindStaticStyles`\n\n### License\n\n[MIT](https://github.com/spyfu/spyfu-vuex-helpers/blob/master/LICENSE)\n\nCopyright (c) 2017-present, [SpyFu](https://spyfu.com)\n',
+30 silly publish   readmeFilename: 'README.md',
+30 silly publish   gitHead: '8ceb675ff382a94e6cd7842197bc6b36466068f0',
+30 silly publish   _id: 'spyfu-vue-functional@0.1.2',
+30 silly publish   _shasum: '0d119a2045e55b6cb8632ede61a90af5c242c06b',
+30 silly publish   _from: '.' }
+31 info lifecycle spyfu-vue-functional@0.1.2~prepublishOnly: spyfu-vue-functional@0.1.2
+32 silly lifecycle spyfu-vue-functional@0.1.2~prepublishOnly: no script for prepublishOnly, continuing
+33 verbose getPublishConfig undefined
+34 silly mapToRegistry name spyfu-vue-functional
+35 silly mapToRegistry using default registry
+36 silly mapToRegistry registry https://registry.npmjs.org/
+37 silly mapToRegistry data Result {
+37 silly mapToRegistry   raw: 'spyfu-vue-functional',
+37 silly mapToRegistry   scope: null,
+37 silly mapToRegistry   escapedName: 'spyfu-vue-functional',
+37 silly mapToRegistry   name: 'spyfu-vue-functional',
+37 silly mapToRegistry   rawSpec: '',
+37 silly mapToRegistry   spec: 'latest',
+37 silly mapToRegistry   type: 'tag' }
+38 silly mapToRegistry uri https://registry.npmjs.org/spyfu-vue-functional
+39 verbose publish registryBase https://registry.npmjs.org/
+40 silly publish uploading /Users/kyle/.npm/spyfu-vue-functional/0.1.2/package.tgz
+41 verbose stack Error: auth required for publishing
+41 verbose stack     at CachingRegistryClient.publish (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/publish.js:30:14)
+41 verbose stack     at /Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/lib/publish.js:137:14
+41 verbose stack     at mapToRegistry (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/lib/utils/map-to-registry.js:62:3)
+41 verbose stack     at publish_ (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/lib/publish.js:108:3)
+41 verbose stack     at Array.<anonymous> (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+41 verbose stack     at LOOP (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+41 verbose stack     at /Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+41 verbose stack     at done (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/lib/utils/lifecycle.js:132:5)
+41 verbose stack     at LOOP (/Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:7:26)
+41 verbose stack     at /Users/kyle/.nvm/versions/node/v7.7.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+42 verbose cwd /Users/kyle/Git/spyfu-vue-functional
+43 error Darwin 16.7.0
+44 error argv "/Users/kyle/.nvm/versions/node/v7.7.1/bin/node" "/Users/kyle/.nvm/versions/node/v7.7.1/bin/npm" "publish"
+45 error node v7.7.1
+46 error npm  v4.1.2
+47 error code ENEEDAUTH
+48 error need auth auth required for publishing
+49 error need auth You need to authorize this machine using `npm adduser`
+50 verbose exit [ 1, true ]
