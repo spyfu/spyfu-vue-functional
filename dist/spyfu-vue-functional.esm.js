@@ -68,6 +68,11 @@ var index = {
             })) {
                 attrs.style.display = 'none';
             }
+
+            attrs.directives = directives.filter(function (_ref2) {
+                var name = _ref2.name;
+                return name !== 'show';
+            });
         }
 
         return attrs;
