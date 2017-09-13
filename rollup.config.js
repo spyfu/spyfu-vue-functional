@@ -42,7 +42,8 @@ else {
 
 export default {
     entry: 'lib/index.js',
-    plugins: plugins,
+    exports: 'named',
     external: external,
+    plugins: plugins,
     targets: targets,
 };
