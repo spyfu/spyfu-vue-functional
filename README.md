@@ -42,14 +42,15 @@ export default {
 If you're only interested in binding part of the placeholder element, the following methods are also available.
 
 - `bindAttributes`
-- `bindDirectives`
-- `bindEventListeners`
 - `bindClasses`
+- `bindDirectives`
 - `bindDynamicClasses`
-- `bindStaticClasses`
-- `bindStyles`
 - `bindDynamicStyles`
+- `bindEventListeners`
+- `bindKey`
+- `bindStaticClasses`
 - `bindStaticStyles`
+- `bindStyles`
 
 ### License
 
