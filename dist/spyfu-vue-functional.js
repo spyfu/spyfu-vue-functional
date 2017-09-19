@@ -25,10 +25,11 @@ function bindAll(context) {
 
     attrs = normalize(attrs);
     attrs = bindAttributes(context, attrs, true);
-    attrs = bindStyles(context, attrs, true);
     attrs = bindClasses(context, attrs, true);
     attrs = bindDirectives(context, attrs, true);
     attrs = bindEventListeners(context, attrs, true);
+    attrs = bindKey(context, attrs, true);
+    attrs = bindStyles(context, attrs, true);
 
     return attrs;
 }
@@ -45,6 +46,21 @@ function bindAttributes(context) {
     if (context.data && context.data.attrs) {
         attrs.attrs = context.data.attrs;
     }
+
+    return attrs;
+}
+
+// bind both static and dynamic classes
+function bindClasses(context) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    if (!isNormalized) {
+        attrs = normalize(attrs);
+    }
+
+    attrs = bindDynamicClasses(context, attrs);
+    attrs = bindStaticClasses(context, attrs);
 
     return attrs;
 }
@@ -77,21 +93,6 @@ function bindDirectives(context) {
             return name !== 'show';
         });
     }
-
-    return attrs;
-}
-
-// bind both static and dynamic classes
-function bindClasses(context) {
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    if (!isNormalized) {
-        attrs = normalize(attrs);
-    }
-
-    attrs = bindDynamicClasses(context, attrs);
-    attrs = bindStaticClasses(context, attrs);
 
     return attrs;
 }
@@ -156,6 +157,22 @@ function bindEventListeners(context) {
     return attrs;
 }
 
+// bind a vnode key
+function bindKey(context) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    if (!isNormalized) {
+        attrs = normalize(attrs);
+    }
+
+    if (context.data && context.data.key) {
+        attrs.key = context.data.key;
+    }
+
+    return attrs;
+}
+
 // bind static classes
 function bindStaticClasses(context) {
     var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -211,6 +228,7 @@ var index = {
     bindDynamicClasses: bindDynamicClasses,
     bindDynamicStyles: bindDynamicStyles,
     bindEventListeners: bindEventListeners,
+    bindKey: bindKey,
     bindStaticClasses: bindStaticClasses,
     bindStaticStyles: bindStaticStyles,
     bindStyles: bindStyles
@@ -218,11 +236,12 @@ var index = {
 
 exports.bindAll = bindAll;
 exports.bindAttributes = bindAttributes;
-exports.bindDirectives = bindDirectives;
 exports.bindClasses = bindClasses;
+exports.bindDirectives = bindDirectives;
 exports.bindDynamicClasses = bindDynamicClasses;
 exports.bindDynamicStyles = bindDynamicStyles;
 exports.bindEventListeners = bindEventListeners;
+exports.bindKey = bindKey;
 exports.bindStaticClasses = bindStaticClasses;
 exports.bindStaticStyles = bindStaticStyles;
 exports.bindStyles = bindStyles;
