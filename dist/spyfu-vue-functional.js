@@ -106,7 +106,9 @@ function bindDynamicClasses(context) {
     }
 
     if (context.data && context.data.class) {
-        if (Array.isArray(context.data.class)) {
+        if (typeof context.data.class === 'string') {
+            attrs.class.push(context.data.class);
+        } else if (Array.isArray(context.data.class)) {
             var _attrs$class;
 
             (_attrs$class = attrs.class).push.apply(_attrs$class, toConsumableArray(context.data.class));
