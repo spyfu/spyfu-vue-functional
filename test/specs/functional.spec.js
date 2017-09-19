@@ -48,6 +48,10 @@ const render = factory({
             functional: true,
             render: (h, context) => <div { ...functional.bindStaticStyles(context) } />,
         },
+        'v-key': {
+            functional: true,
+            render: (h, context) => <div { ...functional.bindKey(context) } />
+        },
     },
 });
 
@@ -77,6 +81,7 @@ describe('functional bindings', () => {
                 v-show="show"
                 id="foo"
                 class="foo"
+                key="bar"
                 style="color: red"
                 :class="{ bar: true, baz: false }"
                 :style="{ border: '1px' }"
@@ -103,6 +108,9 @@ describe('functional bindings', () => {
         // directives
         expect(vm.$el.style.display).to.equal('none');
         vm.show = true;
+
+        // key
+        expect(vm._vnode.key).to.equal('bar');
 
         vm.$nextTick(() => {
             expect(vm.$el.style.display).to.equal('');
@@ -148,6 +156,12 @@ describe('functional bindings', () => {
 
         vm.$el.click();
         expect(onClick.called).to.be.true;
+    });
+
+    it('bindKey', () => {
+        vm = render({ template: `<v-key key="foo" />` });
+
+        expect(vm._vnode.key).to.equal('foo');
     });
 
     describe('classes', () => {
