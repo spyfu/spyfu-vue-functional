@@ -158,6 +158,11 @@ describe('functional bindings', () => {
             expect(vm.$el.classList.contains('baz')).to.be.false;
         });
 
+        it('bindDynamicClasses (string)', () => {
+            vm = render({ template: `<v-dynamic-class :class="'foo'" />` });
+            expect(vm.$el.classList.contains('foo')).to.be.true;
+        });
+
         it('bindDynamicClasses (array)', () => {
             vm = render({ template: `<v-dynamic-class :class="['foo']" />` });
             expect(vm.$el.classList.contains('foo')).to.be.true;
