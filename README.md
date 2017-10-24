@@ -2,7 +2,7 @@
 
 [![Build status](https://img.shields.io/circleci/project/github/spyfu/spyfu-vue-functional.svg)](https://circleci.com/gh/spyfu/spyfu-vue-functional)
 [![Coverage](https://img.shields.io/codecov/c/token/ZnYz3FuhI5/github/spyfu/spyfu-vue-functional.svg)](https://codecov.io/gh/spyfu/spyfu-vue-functional)
-[![Dev dependencies](https://img.shields.io/david/dev/spyfu/spyfu-vue-functional.svg)](#)
+[![Dev dependencies](https://img.shields.io/david/dev/spyfu/spyfu-vue-functional.svg)](https://david-dm.org/spyfu/spyfu-vue-functional?type=dev)
 [![npm](https://img.shields.io/npm/v/spyfu-vue-functional.svg)](https://www.npmjs.com/package/spyfu-vue-functional)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/spyfu/spyfu-vue-functional/blob/master/LICENSE)
 
