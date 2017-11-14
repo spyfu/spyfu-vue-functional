@@ -228,5 +228,6 @@ var index = {
     bindStyles: bindStyles
 };
 
-export { bindAll, bindAttributes, bindClasses, bindDirectives, bindDynamicClasses, bindDynamicStyles, bindEventListeners, bindKey, bindStaticClasses, bindStaticStyles, bindStyles };export default index;
+export { bindAll, bindAttributes, bindClasses, bindDirectives, bindDynamicClasses, bindDynamicStyles, bindEventListeners, bindKey, bindStaticClasses, bindStaticStyles, bindStyles };
+export default index;
 //# sourceMappingURL=spyfu-vue-functional.esm.js.map

@@ -18,12 +18,12 @@ if (isProduction) {
             dest: pkg.main,
             format: 'umd',
             moduleName: 'spyfuVueFunctional',
-            sourceMap: true,
+            sourcemap: true,
         },
         {
             dest: pkg.module,
             format: 'es',
-            sourceMap: true,
+            sourcemap: true,
         }
     )
 }
