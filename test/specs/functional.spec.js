@@ -52,6 +52,10 @@ const render = factory({
             functional: true,
             render: (h, context) => <div { ...functional.bindKey(context) } />
         },
+        'v-scope-id': {
+            functional: true,
+            render: (h, context) => <div { ...functional.bindScopeId(context) } />
+        },
     },
 });
 
@@ -209,6 +213,15 @@ describe('functional bindings', () => {
         it('bindStaticStyles', () => {
             vm = render({ template: `<v-static-style style="color: red" />` });
             expect(vm.$el.style.color).to.equal('red');
+        });
+
+        it('bindScopeId', () => {
+            vm = render({
+                _scopeId: 'data-v-123',
+                template: `<v-scope-id />`,
+            });
+
+            expect(vm.$el.outerHTML).to.equal(`<div data-v-123=""></div>`);
         });
     });
 });

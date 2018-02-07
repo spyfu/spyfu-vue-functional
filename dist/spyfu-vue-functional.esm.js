@@ -167,6 +167,20 @@ function bindKey(context) {
     return attrs;
 }
 
+// bind css scope id
+function bindScopeId(context) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    if (!isNormalized) {
+        attrs = normalize(attrs);
+    }
+
+    if (context.parent.$options._scopeId) {
+        attrs.attrs[context.parent.$options._scopeId] = null;
+    }
+}
+
 // bind static classes
 function bindStaticClasses(context) {
     var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -223,11 +237,12 @@ var index = {
     bindDynamicStyles: bindDynamicStyles,
     bindEventListeners: bindEventListeners,
     bindKey: bindKey,
+    bindScopeId: bindScopeId,
     bindStaticClasses: bindStaticClasses,
     bindStaticStyles: bindStaticStyles,
     bindStyles: bindStyles
 };
 
-export { bindAll, bindAttributes, bindClasses, bindDirectives, bindDynamicClasses, bindDynamicStyles, bindEventListeners, bindKey, bindStaticClasses, bindStaticStyles, bindStyles };
+export { bindAll, bindAttributes, bindClasses, bindDirectives, bindDynamicClasses, bindDynamicStyles, bindEventListeners, bindKey, bindScopeId, bindStaticClasses, bindStaticStyles, bindStyles };
 export default index;
 //# sourceMappingURL=spyfu-vue-functional.esm.js.map

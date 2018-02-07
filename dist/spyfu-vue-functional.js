@@ -173,6 +173,20 @@ function bindKey(context) {
     return attrs;
 }
 
+// bind css scope id
+function bindScopeId(context) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    if (!isNormalized) {
+        attrs = normalize(attrs);
+    }
+
+    if (context.parent.$options._scopeId) {
+        attrs.attrs[context.parent.$options._scopeId] = null;
+    }
+}
+
 // bind static classes
 function bindStaticClasses(context) {
     var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -229,6 +243,7 @@ var index = {
     bindDynamicStyles: bindDynamicStyles,
     bindEventListeners: bindEventListeners,
     bindKey: bindKey,
+    bindScopeId: bindScopeId,
     bindStaticClasses: bindStaticClasses,
     bindStaticStyles: bindStaticStyles,
     bindStyles: bindStyles
@@ -242,6 +257,7 @@ exports.bindDynamicClasses = bindDynamicClasses;
 exports.bindDynamicStyles = bindDynamicStyles;
 exports.bindEventListeners = bindEventListeners;
 exports.bindKey = bindKey;
+exports.bindScopeId = bindScopeId;
 exports.bindStaticClasses = bindStaticClasses;
 exports.bindStaticStyles = bindStaticStyles;
 exports.bindStyles = bindStyles;
