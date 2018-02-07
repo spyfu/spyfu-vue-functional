@@ -23,6 +23,7 @@ function bindAll(context) {
     attrs = bindDirectives(context, attrs, true);
     attrs = bindEventListeners(context, attrs, true);
     attrs = bindKey(context, attrs, true);
+    attrs = bindScopeId(context, attrs, true);
     attrs = bindStyles(context, attrs, true);
 
     return attrs;
@@ -177,8 +178,10 @@ function bindScopeId(context) {
     }
 
     if (context.parent.$options._scopeId) {
-        attrs.attrs[context.parent.$options._scopeId] = null;
+        attrs.attrs[context.parent.$options._scopeId] = '';
     }
+
+    return attrs;
 }
 
 // bind static classes
