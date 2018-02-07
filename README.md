@@ -48,6 +48,7 @@ If you're only interested in binding part of the placeholder element, the follow
 - `bindDynamicStyles`
 - `bindEventListeners`
 - `bindKey`
+- `bindScopeId`
 - `bindStaticClasses`
 - `bindStaticStyles`
 - `bindStyles`
