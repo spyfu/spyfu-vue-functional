@@ -80,6 +80,7 @@ describe('functional bindings', () => {
 
         vm = render({
             data: () => ({ show: false }),
+            _scopeId: 'data-v-123',
             methods: { onClick },
             template: `<v-all
                 v-show="show"
@@ -95,6 +96,7 @@ describe('functional bindings', () => {
 
         // attributes
         expect(vm.$el.getAttribute('id')).to.equal('foo');
+        expect(vm.$el.getAttribute('data-v-123')).to.equal('');
 
         // classes
         expect(vm.$el.classList.contains('foo')).to.be.true;
@@ -221,7 +223,7 @@ describe('functional bindings', () => {
                 template: `<v-scope-id />`,
             });
 
-            expect(vm.$el.outerHTML).to.equal(`<div data-v-123=""></div>`);
+            expect(vm.$el.getAttribute('data-v-123')).to.equal('');
         });
     });
 });
