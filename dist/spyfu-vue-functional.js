@@ -15,53 +15,47 @@ var toConsumableArray = function (arr) {
 };
 
 // helper function to normalize component attributes
-var normalize = function normalize(attrs) {
-    return Object.assign({ attrs: {}, class: [], on: {}, style: {} }, attrs);
+var normalize = function normalize(context, attrs) {
+    // first test if the component is functional
+    if (!context) {
+        throw new TypeError('[spyfu-vue-functional]: Non-functional components cannot use functional binding helpers.');
+    }
+
+    return Object.assign({
+        attrs: {},
+        class: [],
+        on: {},
+        style: {}
+    }, attrs);
 };
 
-// bind everything from the placeholder element
+// bind all context data
 function bindAll(context) {
     var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    attrs = normalize(attrs);
-    attrs = bindAttributes(context, attrs, true);
-    attrs = bindClasses(context, attrs, true);
-    attrs = bindDirectives(context, attrs, true);
-    attrs = bindEventListeners(context, attrs, true);
-    attrs = bindKey(context, attrs, true);
-    attrs = bindScopeId(context, attrs, true);
-    attrs = bindStyles(context, attrs, true);
+    attrs = normalize(context, attrs);
+
+    attrs = this.bindAttributes(context, attrs, true);
+    attrs = this.bindStyles(context, attrs, true);
+    attrs = this.bindClasses(context, attrs, true);
+    attrs = this.bindDirectives(context, attrs, true);
+    attrs = this.bindEventListeners(context, attrs, true);
 
     return attrs;
 }
 
-// bind dom attributes
+// bind element attributes
 function bindAttributes(context) {
     var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.data && context.data.attrs) {
         attrs.attrs = context.data.attrs;
     }
-
-    return attrs;
-}
-
-// bind both static and dynamic classes
-function bindClasses(context) {
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    if (!isNormalized) {
-        attrs = normalize(attrs);
-    }
-
-    attrs = bindDynamicClasses(context, attrs);
-    attrs = bindStaticClasses(context, attrs);
 
     return attrs;
 }
@@ -72,7 +66,7 @@ function bindDirectives(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.data && context.data.directives) {
@@ -87,13 +81,22 @@ function bindDirectives(context) {
         })) {
             attrs.style.display = 'none';
         }
-
-        // custom directives
-        attrs.directives = directives.filter(function (_ref2) {
-            var name = _ref2.name;
-            return name !== 'show';
-        });
     }
+
+    return attrs;
+}
+
+// bind both static and dynamic classes
+function bindClasses(context) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    if (!isNormalized) {
+        attrs = normalize(context, attrs);
+    }
+
+    attrs = this.bindDynamicClasses(context, attrs);
+    attrs = this.bindStaticClasses(context, attrs);
 
     return attrs;
 }
@@ -104,13 +107,11 @@ function bindDynamicClasses(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.data && context.data.class) {
-        if (typeof context.data.class === 'string') {
-            attrs.class.push(context.data.class);
-        } else if (Array.isArray(context.data.class)) {
+        if (Array.isArray(context.data.class)) {
             var _attrs$class;
 
             (_attrs$class = attrs.class).push.apply(_attrs$class, toConsumableArray(context.data.class));
@@ -132,7 +133,7 @@ function bindDynamicStyles(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.data && context.data.style) {
@@ -148,43 +149,11 @@ function bindEventListeners(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.listeners) {
         attrs.on = Object.assign({}, attrs.on, context.listeners);
-    }
-
-    return attrs;
-}
-
-// bind a vnode key
-function bindKey(context) {
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    if (!isNormalized) {
-        attrs = normalize(attrs);
-    }
-
-    if (context.data && context.data.key) {
-        attrs.key = context.data.key;
-    }
-
-    return attrs;
-}
-
-// bind css scope id
-function bindScopeId(context) {
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    if (!isNormalized) {
-        attrs = normalize(attrs);
-    }
-
-    if (context.parent.$options._scopeId) {
-        attrs.attrs[context.parent.$options._scopeId] = '';
     }
 
     return attrs;
@@ -196,7 +165,7 @@ function bindStaticClasses(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.data && context.data.staticClass) {
@@ -212,7 +181,7 @@ function bindStaticStyles(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
     if (context.data && context.data.staticStyle) {
@@ -228,43 +197,25 @@ function bindStyles(context) {
     var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (!isNormalized) {
-        attrs = normalize(attrs);
+        attrs = normalize(context, attrs);
     }
 
-    attrs = bindDynamicStyles(context, attrs);
-    attrs = bindStaticStyles(context, attrs);
+    attrs = this.bindDynamicStyles(context, attrs);
+    attrs = this.bindStaticStyles(context, attrs);
 
     return attrs;
 }
 
-var index = {
-    bindAll: bindAll,
-    bindAttributes: bindAttributes,
-    bindClasses: bindClasses,
-    bindDirectives: bindDirectives,
-    bindDynamicClasses: bindDynamicClasses,
-    bindDynamicStyles: bindDynamicStyles,
-    bindEventListeners: bindEventListeners,
-    bindKey: bindKey,
-    bindScopeId: bindScopeId,
-    bindStaticClasses: bindStaticClasses,
-    bindStaticStyles: bindStaticStyles,
-    bindStyles: bindStyles
-};
-
 exports.bindAll = bindAll;
 exports.bindAttributes = bindAttributes;
-exports.bindClasses = bindClasses;
 exports.bindDirectives = bindDirectives;
+exports.bindClasses = bindClasses;
 exports.bindDynamicClasses = bindDynamicClasses;
 exports.bindDynamicStyles = bindDynamicStyles;
 exports.bindEventListeners = bindEventListeners;
-exports.bindKey = bindKey;
-exports.bindScopeId = bindScopeId;
 exports.bindStaticClasses = bindStaticClasses;
 exports.bindStaticStyles = bindStaticStyles;
 exports.bindStyles = bindStyles;
-exports['default'] = index;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
