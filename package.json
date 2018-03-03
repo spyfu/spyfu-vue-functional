@@ -1,6 +1,6 @@
 {
   "name": "spyfu-vue-functional",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Helper functions for functional Vue components",
   "main": "dist/spyfu-vue-functional.js",
   "module": "dist/spyfu-vue-functional.esm.js",
