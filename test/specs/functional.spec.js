@@ -48,14 +48,6 @@ const render = factory({
             functional: true,
             render: (h, context) => <div { ...functional.bindStaticStyles(context) } />,
         },
-        'v-key': {
-            functional: true,
-            render: (h, context) => <div { ...functional.bindKey(context) } />
-        },
-        'v-scope-id': {
-            functional: true,
-            render: (h, context) => <div { ...functional.bindScopeId(context) } />
-        },
     },
 });
 
@@ -75,18 +67,20 @@ describe('functional bindings', () => {
         }
     });
 
+    it('throws an error with non-functional components', () => {
+        expect(() => functional.bindAll(undefined)).to.throw('[spyfu-vue-functional]');
+    });
+
     it('bindAll', (done) => {
         const onClick = sinon.spy();
 
         vm = render({
             data: () => ({ show: false }),
-            _scopeId: 'data-v-123',
             methods: { onClick },
             template: `<v-all
                 v-show="show"
                 id="foo"
                 class="foo"
-                key="bar"
                 style="color: red"
                 :class="{ bar: true, baz: false }"
                 :style="{ border: '1px' }"
@@ -96,7 +90,6 @@ describe('functional bindings', () => {
 
         // attributes
         expect(vm.$el.getAttribute('id')).to.equal('foo');
-        expect(vm.$el.getAttribute('data-v-123')).to.equal('');
 
         // classes
         expect(vm.$el.classList.contains('foo')).to.be.true;
@@ -115,9 +108,6 @@ describe('functional bindings', () => {
         expect(vm.$el.style.display).to.equal('none');
         vm.show = true;
 
-        // key
-        expect(vm._vnode.key).to.equal('bar');
-
         vm.$nextTick(() => {
             expect(vm.$el.style.display).to.equal('');
             done();
@@ -131,15 +121,8 @@ describe('functional bindings', () => {
 
     it('bindDirectives', (done) => {
         vm = render({
-            directives: {
-                'bling': {
-                    bind(el) {
-                        el.classList.add('bingBangBoom');
-                    }
-                }
-            },
             data: () => ({ show: true }),
-            template: `<v-directives v-show="show" v-bling=""/>`,
+            template: `<v-directives v-show="show" />`,
         });
 
         expect(vm.$el.style.display).to.equal('');
@@ -147,7 +130,6 @@ describe('functional bindings', () => {
         vm.show = false;
         vm.$nextTick(() => {
             expect(vm.$el.style.display).to.equal('none');
-            expect(vm.$el.classList.contains('bingBangBoom')).to.be.true;
             done();
         });
     });
@@ -164,23 +146,12 @@ describe('functional bindings', () => {
         expect(onClick.called).to.be.true;
     });
 
-    it('bindKey', () => {
-        vm = render({ template: `<v-key key="foo" />` });
-
-        expect(vm._vnode.key).to.equal('foo');
-    });
-
     describe('classes', () => {
         it('bindClasses', () => {
             vm = render({ template: `<v-class class="foo" :class="{ bar: true, baz: false }" />` });
             expect(vm.$el.classList.contains('foo')).to.be.true;
             expect(vm.$el.classList.contains('bar')).to.be.true;
             expect(vm.$el.classList.contains('baz')).to.be.false;
-        });
-
-        it('bindDynamicClasses (string)', () => {
-            vm = render({ template: `<v-dynamic-class :class="'foo'" />` });
-            expect(vm.$el.classList.contains('foo')).to.be.true;
         });
 
         it('bindDynamicClasses (array)', () => {
@@ -215,15 +186,6 @@ describe('functional bindings', () => {
         it('bindStaticStyles', () => {
             vm = render({ template: `<v-static-style style="color: red" />` });
             expect(vm.$el.style.color).to.equal('red');
-        });
-
-        it('bindScopeId', () => {
-            vm = render({
-                _scopeId: 'data-v-123',
-                template: `<v-scope-id />`,
-            });
-
-            expect(vm.$el.getAttribute('data-v-123')).to.equal('');
         });
     });
 });
