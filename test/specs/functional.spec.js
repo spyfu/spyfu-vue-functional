@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { factory } from 'spyfu-vue-factory';
-import functional from '../../lib';
+import * as functional from '../../lib';
 import sinon from 'sinon';
 
 //
