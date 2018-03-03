@@ -29,11 +29,11 @@ function bindAll(context) {
 
     attrs = normalize(context, attrs);
 
-    attrs = this.bindAttributes(context, attrs, true);
-    attrs = this.bindStyles(context, attrs, true);
-    attrs = this.bindClasses(context, attrs, true);
-    attrs = this.bindDirectives(context, attrs, true);
-    attrs = this.bindEventListeners(context, attrs, true);
+    attrs = bindAttributes(context, attrs, true);
+    attrs = bindStyles(context, attrs, true);
+    attrs = bindClasses(context, attrs, true);
+    attrs = bindDirectives(context, attrs, true);
+    attrs = bindEventListeners(context, attrs, true);
 
     return attrs;
 }
@@ -89,8 +89,8 @@ function bindClasses(context) {
         attrs = normalize(context, attrs);
     }
 
-    attrs = this.bindDynamicClasses(context, attrs);
-    attrs = this.bindStaticClasses(context, attrs);
+    attrs = bindDynamicClasses(context, attrs);
+    attrs = bindStaticClasses(context, attrs);
 
     return attrs;
 }
@@ -194,8 +194,8 @@ function bindStyles(context) {
         attrs = normalize(context, attrs);
     }
 
-    attrs = this.bindDynamicStyles(context, attrs);
-    attrs = this.bindStaticStyles(context, attrs);
+    attrs = bindDynamicStyles(context, attrs);
+    attrs = bindStaticStyles(context, attrs);
 
     return attrs;
 }
