@@ -111,10 +111,14 @@ function bindDynamicClasses(context) {
     }
 
     if (context.data && context.data.class) {
-        if (Array.isArray(context.data.class)) {
+        if (typeof context.data.class === 'string') {
             var _attrs$class;
 
-            (_attrs$class = attrs.class).push.apply(_attrs$class, toConsumableArray(context.data.class));
+            (_attrs$class = attrs.class).push.apply(_attrs$class, toConsumableArray(context.data.class.split(' ')));
+        } else if (Array.isArray(context.data.class)) {
+            var _attrs$class2;
+
+            (_attrs$class2 = attrs.class).push.apply(_attrs$class2, toConsumableArray(context.data.class));
         } else {
             Object.keys(context.data.class).filter(function (className) {
                 return context.data.class[className];

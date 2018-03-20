@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { expect } from 'chai';
 import { factory } from 'spyfu-vue-factory';
 import * as functional from '../../lib';
