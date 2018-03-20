@@ -188,4 +188,30 @@ describe('functional bindings', () => {
             expect(vm.$el.style.color).to.equal('red');
         });
     });
+
+    it('nested functional component classes', () => {
+        it('bind classes with string', () => {
+            const Grandchild = {
+                functional: true,
+                render(h, context) {
+                    const bindings = functional.bindAll(context);
+                    bindings.class.push('foo');
+                    return <div {...bindings} />
+                },
+            };
+
+            vm = render({
+                components: {
+                    'child': {
+                        functional: true,
+                        render: (h) => <Grandchild class="bar" />
+                    },
+                },
+                template: `<child />`,
+            });
+
+            expect(vm.$el.classList.contains('foo')).to.be.true;
+            expect(vm.$el.classList.contains('bar')).to.be.true;
+        });
+    })
 });
