@@ -18,6 +18,7 @@ var normalize = function normalize(context, attrs) {
     return Object.assign({
         attrs: {},
         class: [],
+        directives: [],
         on: {},
         style: {}
     }, attrs);
@@ -34,6 +35,7 @@ function bindAll(context) {
     attrs = bindClasses(context, attrs, true);
     attrs = bindDirectives(context, attrs, true);
     attrs = bindEventListeners(context, attrs, true);
+    attrs = bindScopeId(context, attrs, true);
 
     return attrs;
 }
@@ -157,6 +159,22 @@ function bindEventListeners(context) {
     return attrs;
 }
 
+// bind css scope id
+function bindScopeId(context) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var isNormalized = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    if (!isNormalized) {
+        attrs = normalize(attrs);
+    }
+
+    if (context.parent && context.parent.$options._scopeId) {
+        attrs.attrs[context.parent.$options._scopeId] = '';
+    }
+
+    return attrs;
+}
+
 // bind static classes
 function bindStaticClasses(context) {
     var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -204,5 +222,5 @@ function bindStyles(context) {
     return attrs;
 }
 
-export { bindAll, bindAttributes, bindDirectives, bindClasses, bindDynamicClasses, bindDynamicStyles, bindEventListeners, bindStaticClasses, bindStaticStyles, bindStyles };
+export { bindAll, bindAttributes, bindDirectives, bindClasses, bindDynamicClasses, bindDynamicStyles, bindEventListeners, bindScopeId, bindStaticClasses, bindStaticStyles, bindStyles };
 //# sourceMappingURL=spyfu-vue-functional.esm.js.map
