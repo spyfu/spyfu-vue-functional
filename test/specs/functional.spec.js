@@ -49,6 +49,10 @@ const render = factory({
             functional: true,
             render: (h, context) => <div { ...functional.bindStaticStyles(context) } />,
         },
+        'v-scope-id': {
+            functional: true,
+            render: (h, context) => <div { ...functional.bindScopeId(context) } />
+        },
     },
 });
 
@@ -147,6 +151,15 @@ describe('functional bindings', () => {
         expect(onClick.called).to.be.true;
     });
 
+    it('bindScopeId', () => {
+        vm = render({
+            _scopeId: 'data-v-123',
+            template: `<v-scope-id />`,
+        });
+
+        expect(vm.$el.outerHTML).to.equal(`<div data-v-123="" class=""></div>`);
+    });
+
     describe('classes', () => {
         it('bindClasses', () => {
             vm = render({ template: `<v-class class="foo" :class="{ bar: true, baz: false }" />` });
@@ -214,5 +227,5 @@ describe('functional bindings', () => {
             expect(vm.$el.classList.contains('foo')).to.be.true;
             expect(vm.$el.classList.contains('bar')).to.be.true;
         });
-    })
+    });
 });
