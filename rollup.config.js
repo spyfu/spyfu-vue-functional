@@ -15,13 +15,13 @@ let plugins = [babel(babelrc())];
 if (isProduction) {
     targets.push(
         {
-            dest: pkg.main,
+            file: pkg.main,
             format: 'umd',
-            moduleName: 'spyfuVueFunctional',
+            name: 'spyfuVueFunctional',
             sourcemap: true,
         },
         {
-            dest: pkg.module,
+            file: pkg.module,
             format: 'es',
             sourcemap: true,
         }
@@ -41,9 +41,9 @@ else {
 }
 
 export default {
-    entry: 'lib/index.js',
     exports: 'named',
     external: external,
+    input: 'lib/index.js',
+    output: targets,
     plugins: plugins,
-    targets: targets,
 };
