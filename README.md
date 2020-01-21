@@ -6,6 +6,8 @@
 [![npm](https://img.shields.io/npm/v/spyfu-vue-functional.svg)](https://www.npmjs.com/package/spyfu-vue-functional)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/spyfu/spyfu-vue-functional/blob/master/LICENSE)
 
+< *Warning:* This is not compatible with Vue 3.
+
 <a name="installation"></a>
 ### Installation
 
